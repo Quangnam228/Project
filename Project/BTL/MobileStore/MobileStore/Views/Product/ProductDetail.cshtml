@@ -66,6 +66,7 @@
         $(function () {
             var number = @ViewBag.GioHangCount;
             $("#addToCart").click(function () {
+                
                 var color = $("#imageById option:selected").val();
                 var quantity = $('#quantity-product').val();
                 var id = $('#imageMain').attr('value');
@@ -81,6 +82,7 @@
 
                     }
                 });
+                alert("Đã thêm vào giỏ hàng!");
             });
         });
     </script>
