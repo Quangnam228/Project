@@ -27,7 +27,7 @@
                             <strong>Tổng tiền: </strong>
                             <b class="red">
                                 @{
-                                    List<Cart> temp = (List<Cart>)Session["Cart"];
+                                    List<Cart> temp = (List<Cart>)ViewBag.tempCart;
                                     var total = String.Format("{0:N0}", temp.Sum(x => x.quantity * float.Parse(x.product.productSale)));
                                 }@total
                             </b>
@@ -43,7 +43,7 @@
                         <div fragment="1734c12088b" class="rowtime"><span>Giao trước 15h00 hôm sau</span></div><!---->
                         <ul>
                             <li>
-                                @foreach (Cart cart in (List<Cart>)Session["cart"])
+                                @foreach (Cart cart in (List<Cart>)ViewBag.tempCart)
                                 {
                                     <a href='@Url.Action("ProductDetail", "Product")/@cart.product.productID' target="_blank" class="img-order">
                                         <img src="~/Content/images/@cart.product.productImage" loading="lazy" class=" ls-is-cached lazyloaded" />
@@ -63,7 +63,7 @@
                                 <small>Tổng tiền:</small>
                                 <small>
                                     @{
-                                        List<Cart> item = (List<Cart>)Session["Cart"];
+                                        List<Cart> item = (List<Cart>)ViewBag.tempCart;
                                         var sum = String.Format("{0:N0}", item.Sum(x => x.quantity * float.Parse(x.product.productSale)));
                                     }@sum
                                 </small>

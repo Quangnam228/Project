@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    var quantityId = "";
 }
 
 @using MobileStore.Models.Entity
@@ -72,8 +73,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @{
+                                        var counter = 0;
+                                           
+                                        }
                                         @foreach (Cart item in (List<Cart>)Session["cart"])
                                         {
+
+                                            quantityId = "quantity" + counter.ToString();
+                                            counter++;
+
                                             <tr id="row_@item.product.productID">
                                                 <td class="cart_product_img d-flex align-items-center">
                                                     <a href="#" id="photo">
@@ -84,10 +93,11 @@
                                                 <td>@item.product.productName</td>
                                                 <td class="price"><span>@(String.Format("{0:N0}", float.Parse(item.product.productSale)))</span></td>
                                                 <td class="quantity">
+                                                     
                                                     <div class="quantity">
-                                                        <span class="qty-minus" onclick="var effect = document.getElementById('quantity'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                        <input type="number" class="quantity" id="quantity" data-id="@item.product.productID" value="@item.quantity" step="1" min="1" max="99" name="quantity">
-                                                        <span class="qty-plus" onclick="var effect = document.getElementById('quantity'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                        <span class="qty-minus" onclick="var effect = document.getElementById('@quantityId'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                        <input type="number" class="quantity" id="@quantityId" data-id="@item.product.productID" value="@item.quantity" step="1" min="1" max="99" name="quantity">
+                                                        <span class="qty-plus" onclick="var effect = document.getElementById('@quantityId'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                     </div>
                                                 </td>
                                                 <td class="total_price"><span>@String.Format("{0:N0}", item.quantity * float.Parse(item.product.productSale)) </span></td>

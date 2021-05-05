@@ -129,6 +129,7 @@ namespace MobileStore.Controllers
             order.city = city;
             order.state = state;
             order.paymentMethod = paymentMethod;
+            ViewBag.tempCart = Session["cart"];
 
             try
             {
@@ -150,8 +151,8 @@ namespace MobileStore.Controllers
             {
                 return Redirect("Error");
             }
-
-            OrderDAO orderDAO = new OrderDAO();
+            Session["Cart"] = null;
+            OrderDAO orderDAO = new OrderDAO();           
             return View(orderDAO.GetOrderById(order.cartID));
         }
 

@@ -27,6 +27,13 @@ namespace MobileStore.Controllers
             }
         }
 
+        public ActionResult Login()
+        {            
+            return View();
+
+        }
+
+        [HttpPost]
         public ActionResult Login(User user)
         {
             if (ModelState.IsValid)
@@ -75,7 +82,12 @@ namespace MobileStore.Controllers
             return hash.ToString();
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
 
+        [HttpPost]
         public ActionResult Register(User user)
         {
             QL_Hang db = new QL_Hang();
