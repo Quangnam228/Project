@@ -11,7 +11,7 @@ namespace MobileStore.Controllers
     public class AjaxController : Controller
     {
         // GET: Ajax
-        
+        QL_Hang db = new QL_Hang();
         public ActionResult LoadAllProduct()
         {
             return View();
@@ -52,8 +52,22 @@ namespace MobileStore.Controllers
             ProductDAO productDAO = new ProductDAO();
             return View(productDAO.GetByTypeId(id));
         }
+       
+        /*[HttpPost]
+        public ActionResult SearchProduct(FormCollection f)
+        {
+            String keyword = f["txtTimKiem"].ToString();
+            List<Product> ListProducts = db.Products.Where(n => n.productName.Contains(keyword)).ToList();
+            if(ListProducts.Count == 0)
+            {
+                ViewBag.notification = "không tìm thấy sản phẩm";              
+            }
+            return View(db.Products.OrderBy(n => n.productName).ToList());
+        }*/
+        public ActionResult SearchProduct(String Search)
+        {
+            return View(db.Products.Where(n => n.productName.StartsWith(Search)));
+        }
 
-
-    
     }
 }

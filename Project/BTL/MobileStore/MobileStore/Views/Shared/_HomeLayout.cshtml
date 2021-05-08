@@ -39,21 +39,34 @@
     <div class="sub-header">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-xs-12">
-                    <ul class="left-info">
-                        <li><a href="https://mail.google.com/"><i class="fa fa-envelope"></i>smartcellular@company.com</a></li>
-                        <li><a href="#"><i class="fa fa-phone"></i>0967.666.888</a></li>
+                <div class="col-md-4">
+                    <ul class="left-info row">
+                        <li class="col-lg-6"><a href="https://mail.google.com/"><i class="fa fa-envelope"></i>abc@gmail.com</a></li>
+                        <li class="col-lg-6"><a href="#"><i class="fa fa-phone"></i>0967.666.888</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="float: right">
+                    <ul>
+                        <li>
+                            @using (Html.BeginForm("SearchProduct", "Ajax"))
+                            {
+                                @Html.TextBox("Search", "", htmlAttributes: new { @class = "TextBoxSearch", @placeholder = "Tìm Kiếm" });
+                                <input type="submit" value="Search" />
+                            }
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4" id="txtTimKiem">
                     <ul class="right-icons">
                         <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="@Url.Action("Logout", "AdminPage")"> Logout</a></li>
                     </ul>
+
                 </div>
             </div>
+
         </div>
     </div>
 
